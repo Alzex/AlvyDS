@@ -1,0 +1,26 @@
+{
+  "name": "alvy",
+  "version": "1.0.0",
+  "description": "Alvy discord bot",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "node ./core/deploy.js",
+    "test": "nodemon index.js",
+    "prestart": "node ./core/deploy.js",
+    "start": "node index.js"
+  },
+  "author": "Alzex",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.6.0",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "@discordjs/rest": "^0.2.0-canary.0",
+    "colors": "^1.4.0",
+    "discord-api-types": "^0.26.1",
+    "discord.js": "^13.5.1",
+    "dotenv": "^11.0.0",
+    "mongoose": "^6.1.6"
+  }
+}
