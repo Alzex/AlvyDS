@@ -6,7 +6,7 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const getFiles = require('./utils/getFiles');
 
-if (process.env.NODE_ENV !== 'PROD') {
+if (process.env.NODE_ENV !== 'production') {
   const dotenv = require('dotenv');
   dotenv.config();
 }

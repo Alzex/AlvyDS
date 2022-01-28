@@ -5,7 +5,7 @@ const { Routes } = require('discord-api-types/v9');
 const getFiles = require('../utils/getFiles');
 require('colors');
 
-if (process.env.NODE_ENV !== 'PROD') {
+if (process.env.NODE_ENV !== 'production') {
   const dotenv = require('dotenv');
   dotenv.config();
 }
