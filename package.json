@@ -13,14 +13,14 @@
   "license": "MIT",
   "devDependencies": {
     "eslint": "^8.6.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "dotenv": "^11.0.0"
   },
   "dependencies": {
     "@discordjs/rest": "^0.2.0-canary.0",
     "colors": "^1.4.0",
     "discord-api-types": "^0.26.1",
     "discord.js": "^13.5.1",
-    "dotenv": "^11.0.0",
     "mongoose": "^6.1.6"
   }
 }

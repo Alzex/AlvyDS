@@ -2,11 +2,13 @@
 
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const dotenv = require('dotenv');
 const getFiles = require('../utils/getFiles');
 require('colors');
 
-dotenv.config();
+if (process.env.NODE_ENV !== 'PROD') {
+  const dotenv = require('dotenv');
+  dotenv.config();
+}
 
 console.log('Deploying commands...');
 const guildIds = process.env.GUILD_ID.split(',');

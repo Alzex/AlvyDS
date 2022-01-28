@@ -2,12 +2,14 @@
 
 const { Client } = require('./core/client');
 const { Intents } = require('discord.js');
-const dotenv = require('dotenv');
 const fs = require('fs');
 const mongoose = require('mongoose');
 const getFiles = require('./utils/getFiles');
 
-dotenv.config();
+if (process.env.NODE_ENV !== 'PROD') {
+  const dotenv = require('dotenv');
+  dotenv.config();
+}
 
 const bot = new Client({
   intents: [
@@ -44,4 +46,4 @@ bot.once('ready', async () => {
   console.log('READY!');
 });
 
-bot.login(process.env.TOKEN);
+bot.login(process.env.TOKEN_TEST);
