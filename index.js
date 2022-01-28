@@ -46,4 +46,4 @@ bot.once('ready', async () => {
   console.log('READY!');
 });
 
-bot.login(process.env.TOKEN_TEST);
+bot.login(process.env.TOKEN);
