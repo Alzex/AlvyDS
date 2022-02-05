@@ -32,23 +32,17 @@ const permissionType = {
   USER: 2,
 };
 
-const devPermission = {
-  permissions: [
-    {
-      id: process.env.DEV_ID,
-      type: permissionType.USER,
-      permission: true,
-    },
-  ],
-};
+const devPermission = [];
 
+const rest = new REST({ version: '9' }).setToken(process.env.TOKEN_TEST);
+
+console.log('Deploying for guilds...');
 for (const guildId of guildIds) {
-  const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
+
   const restUrl = Routes.applicationGuildCommands(
-    process.env.CLIENT_ID,
+    process.env.CLIENT_ID_TEST,
     guildId
   );
-
   rest
     .put(restUrl, { body: commands })
     .then(async (commandList) => {
@@ -57,16 +51,23 @@ for (const guildId of guildIds) {
       for (const command of commandList) {
         if (devOnly.includes(command.name)) {
           console.log(`${command.name} setted`);
-          const restPermUrl = Routes.applicationCommandPermissions(
-            process.env.CLIENT_ID,
-            guildId,
-            command.id
-          );
-          await rest
-            .put(restPermUrl, { body: devPermission })
-            .catch((e) => console.log(e));
+          devPermission.push({
+            id: command.id,
+            permissions: [{
+              id: process.env.DEV_ID,
+              type: permissionType.USER,
+              permission: true
+            }]
+          });
         }
       }
+      const restPermUrl = Routes.guildApplicationCommandsPermissions(
+        process.env.CLIENT_ID_TEST,
+        guildId
+      );
+      await rest
+        .put(restPermUrl, { body: devPermission })
+        .catch((e) => console.log(e));
       console.log(`${'DONE'.green} for ${guildId}`);
     })
     .catch((err) =>
@@ -75,3 +76,13 @@ for (const guildId of guildIds) {
       )
     );
 }
+
+console.log('Deploying for GLOBAL...');
+const globalUrl = Routes.applicationCommands(process.env.CLIENT_ID_TEST);
+
+rest.put(globalUrl, { body: commands })
+  .catch((err) =>
+    console.log(
+      `${'FAILED'.red} for GLOBAL ${`Error code: ${err.code}`.yellow}`
+    )
+  ).then(console.log(`${'DEPLOYED'.green} for GLOBAL`));

@@ -1,8 +1,9 @@
 'use strict';
 
-const interactionCreate = {
-  name: 'interactionCreate',
-  async execute(interaction) {
+const EventHandler = require('../core/event');
+
+const interactionCreate = new EventHandler('interactionCreate',
+  async (interaction) => {
     if (interaction.isCommand()) {
       const command = interaction.client.commands.get(interaction.commandName);
       if (!command) return;
@@ -17,6 +18,6 @@ const interactionCreate = {
       }
     }
   },
-};
+);
 
 module.exports = interactionCreate;
