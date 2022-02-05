@@ -8,6 +8,7 @@ const {
 const { MessageEmbed } = require('discord.js');
 const guild = require('../../models/guild');
 const regGuild = require('../../utils/regGuild');
+const { Permissions } = require('discord.js');
 
 const addrole = {
   data: new SlashCommandBuilder()
@@ -33,9 +34,9 @@ const addrole = {
     ),
   async execute(interaction) {
     const emb = new MessageEmbed();
-    if (!(interaction.member.permissions.has('ADMINISTRATOR') ||
-        interaction.member.permissions.has('MANAGE_ROLES')) ||
-        interaction.user.id !== process.env.DEV_ID) {
+    if (!(interaction.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
+        interaction.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) ||
+        interaction.user.id === process.env.DEV_ID) {
       emb.setTitle('Доступ запрещен ❌');
       await interaction.reply({ embeds: [emb] });
     }
