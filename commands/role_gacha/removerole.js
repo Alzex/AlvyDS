@@ -19,11 +19,12 @@ const removerole = {
     ),
   async execute(interaction) {
     if (!(interaction.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
-    interaction.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) ||
+    interaction.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) &&
     interaction.user.id !== process.env.DEV_ID) {
       const embed = new MessageEmbed()
         .setTitle('Доступ запрещен ❌');
       await interaction.reply({ embeds: [embed] });
+      return;
     }
     const gui = await guild.findById(interaction.guild.id);
     const roleId = interaction.options.getRole('role');

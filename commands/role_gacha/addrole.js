@@ -35,10 +35,11 @@ const addrole = {
   async execute(interaction) {
     const emb = new MessageEmbed();
     if (!(interaction.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
-        interaction.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) ||
+        interaction.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) &&
         interaction.user.id !== process.env.DEV_ID) {
       emb.setTitle('Доступ запрещен ❌');
       await interaction.reply({ embeds: [emb] });
+      return;
     }
     let gui = await guild.findById(interaction.guild.id);
     if (!gui) await regGuild(interaction.guild.id);
