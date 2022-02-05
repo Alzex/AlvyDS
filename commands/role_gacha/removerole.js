@@ -18,9 +18,9 @@ const removerole = {
         .setRequired(true)
     ),
   async execute(interaction) {
-    if (!(interaction.member.permissions.has('ADMINISTRATOR') ||
-        interaction.member.permissions.has('MANAGE_ROLES')) ||
-        interaction.user.id !== process.env.DEV_ID) {
+    if (!(interaction.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
+    interaction.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) ||
+    interaction.user.id === process.env.DEV_ID) {
       const embed = new MessageEmbed()
         .setTitle('Доступ запрещен ❌');
       await interaction.reply({ embeds: [embed] });
