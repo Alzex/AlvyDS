@@ -36,7 +36,7 @@ const addrole = {
     const emb = new MessageEmbed();
     if (!(interaction.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR) ||
         interaction.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) ||
-        interaction.user.id === process.env.DEV_ID) {
+        interaction.user.id !== process.env.DEV_ID) {
       emb.setTitle('Доступ запрещен ❌');
       await interaction.reply({ embeds: [emb] });
     }
