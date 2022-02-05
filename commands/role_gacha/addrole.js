@@ -5,10 +5,9 @@ const {
   SlashCommandRoleOption,
   SlashCommandNumberOption,
 } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, Permissions } = require('discord.js');
 const guild = require('../../models/guild');
 const regGuild = require('../../utils/regGuild');
-const { Permissions } = require('discord.js');
 
 const addrole = {
   data: new SlashCommandBuilder()

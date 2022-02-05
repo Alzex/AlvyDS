@@ -4,7 +4,7 @@ const {
   SlashCommandBuilder,
   SlashCommandRoleOption,
 } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, Permissions } = require('discord.js');
 const guild = require('../../models/guild');
 
 const removerole = {
