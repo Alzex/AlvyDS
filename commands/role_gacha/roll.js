@@ -5,7 +5,7 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const guild = require('../../models/guild');
 const randomTier = require('../../utils/randomTier');
 
-const DAY_IN_SECONDS = 86400;
+const DAY_IN_MILISECONDS = 86400000;
 
 const roll = {
   data: new SlashCommandBuilder()
@@ -39,7 +39,7 @@ const roll = {
     }
 
     const timeDiff = Math.abs(user.lastRole - Date.now());
-    if (timeDiff < DAY_IN_SECONDS) {
+    if (timeDiff < DAY_IN_MILISECONDS) {
       emb.setTitle('⏳ Рано, подожди еще...');
       await interaction.reply({ embeds: [emb], ephemeral: true });
       return;
