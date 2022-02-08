@@ -12,9 +12,9 @@
   "author": "Alzex",
   "license": "MIT",
   "devDependencies": {
+    "dotenv": "^11.0.0",
     "eslint": "^8.6.0",
-    "nodemon": "^2.0.15",
-    "dotenv": "^11.0.0"
+    "nodemon": "^2.0.15"
   },
   "dependencies": {
     "@discordjs/rest": "^0.2.0-canary.0",
