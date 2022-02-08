@@ -11,7 +11,7 @@ const ping = {
   async execute(interaction) {
     await interaction.reply('pong');
     if (interaction.user.id === process.env.DEV_ID) {
-      const commandManager = interaction.client.application.commands;
+      const commandManager = interaction.guild.commands.permissions;
       const globalCommands = await commandManager.fetch();
       const devPermission = [];
       for (const command of globalCommands) {
@@ -26,7 +26,7 @@ const ping = {
           });
         }
       }
-      await commandManager.permissions.set({ fullPermissions: devPermission });
+      await commandManager.set({ fullPermissions: devPermission });
     }
   },
 };

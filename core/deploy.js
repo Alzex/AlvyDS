@@ -10,6 +10,8 @@ if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
 }
 
+console.log(process.env.TOKEN);
+
 console.log('Deploying commands...');
 const guildIds = process.env.GUILD_ID.split(',');
 
@@ -34,13 +36,13 @@ const permissionType = {
 
 const devPermission = [];
 
-const rest = new REST({ version: '9' }).setToken(process.env.TOKEN_TEST);
+const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
 
 console.log('Deploying for guilds...');
 for (const guildId of guildIds) {
 
   const restUrl = Routes.applicationGuildCommands(
-    process.env.CLIENT_ID_TEST,
+    process.env.CLIENT_ID,
     guildId
   );
   rest
@@ -62,7 +64,7 @@ for (const guildId of guildIds) {
         }
       }
       const restPermUrl = Routes.guildApplicationCommandsPermissions(
-        process.env.CLIENT_ID_TEST,
+        process.env.CLIENT_ID,
         guildId
       );
       await rest
@@ -78,7 +80,7 @@ for (const guildId of guildIds) {
 }
 
 console.log('Deploying for GLOBAL...');
-const globalUrl = Routes.applicationCommands(process.env.CLIENT_ID_TEST);
+const globalUrl = Routes.applicationCommands(process.env.CLIENT_ID);
 
 rest.put(globalUrl, { body: commands })
   .catch((err) =>
