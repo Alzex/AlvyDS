@@ -7,9 +7,9 @@ const tiers = require('../config/tiers.json');
  * @returns tier
  */
 const randomTier = () => {
-  const k = 1 - Math.random();
+  const k = Math.random();
   for (const tier of tiers) {
-    if (k > tier.probability) {
+    if (k > 1 - tier.probability) {
       return tier;
     }
   }
