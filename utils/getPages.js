@@ -1,6 +1,7 @@
 'use strict';
 
 const guild = require('../models/guild');
+const tiers = require('../config/tiers.json');
 /**
  * @param {String} guildId Id of the guild
  * @param {Number} tier filter for one tier
@@ -25,7 +26,7 @@ const getPage = async (guildId, tier = null) => {
   const result = [];
   const temp = [];
   for (const role of roles) {
-    temp.push(`<@&${role._id}> [Tier: ${role.tier}]\n`);
+    temp.push(`<@&${role._id}> **${tiers[role.tier].name}** роль\n`);
     if (temp.length === 10) {
       result.push(temp.join(''));
       temp.length = 0;

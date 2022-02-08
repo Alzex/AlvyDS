@@ -4,6 +4,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const guild = require('../../models/guild');
 const randomTier = require('../../utils/randomTier');
+const tiers = require('../../config/tiers.json');
 
 const DAY_IN_SECONDS = 86400;
 
@@ -50,7 +51,9 @@ const roll = {
     await gui.save();
 
     const tier = randomTier();
-    const rolesInTier = gui.roles.filter((role) => role.tier === tier.n);
+    const rolesInTier = gui.roles.filter(
+      (role) => role.tier === tiers.indexOf(tier)
+    );
     const roleId =
       rolesInTier[Math.floor(Math.random() * rolesInTier.length)]._id;
 

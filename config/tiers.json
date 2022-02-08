@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Обычная",
+    "color": "#9e9e9e",
+    "probability": 0.7889
+  },
+  {
+    "name": "Необычная",
+    "color": "#00c22d",
+    "probability": 0.15
+  },
+  {
+    "name": "Редкая",
+    "color": "#030096",
+    "probability": 0.05
+  },
+  {
+    "name": "Очень редкая",
+    "color": "#5c009e",
+    "probability": 0.01
+  },
+  {
+    "name": "Легендарная",
+    "color": "#e6b000",
+    "probability": 0.001
+  },
+  {
+    "name": "Уникальная",
+    "color": "#e61b00",
+    "probability": 0.00001
+  }
+]
