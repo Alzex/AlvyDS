@@ -29,13 +29,6 @@ for (const file of commandFiles) {
   }
 }
 
-const permissionType = {
-  ROLE: 1,
-  USER: 2,
-};
-
-const devPermission = [];
-
 const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
 
 console.log('Deploying for guilds...');
@@ -47,31 +40,7 @@ for (const guildId of guildIds) {
   );
   rest
     .put(restUrl, { body: commands })
-    .then(async (commandList) => {
-      console.log(`${'DEPLOYED'.green} for ${guildId}`);
-      console.log('Setting up permissions for dev commands...');
-      for (const command of commandList) {
-        if (devOnly.includes(command.name)) {
-          console.log(`${command.name} setted`);
-          devPermission.push({
-            id: command.id,
-            permissions: [{
-              id: process.env.DEV_ID,
-              type: permissionType.USER,
-              permission: true
-            }]
-          });
-        }
-      }
-      const restPermUrl = Routes.guildApplicationCommandsPermissions(
-        process.env.CLIENT_ID,
-        guildId
-      );
-      await rest
-        .put(restPermUrl, { body: devPermission })
-        .catch((e) => console.log(e));
-      console.log(`${'DONE'.green} for ${guildId}`);
-    })
+    .then(console.log(`${'DEPLOYED'.green} for ${guildId}`))
     .catch((err) =>
       console.log(
         `${'FAILED'.red} for ${guildId} ${`Error code: ${err.code}`.yellow}`
