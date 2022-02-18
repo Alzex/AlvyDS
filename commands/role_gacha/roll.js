@@ -51,6 +51,8 @@ const roll = {
     await gui.save();
 
     const tier = randomTier();
+    console.dir(tier);
+    console.log(tiers.indexOf(tier));
     const rolesInTier = gui.roles.filter(
       (role) => role.tier === tiers.indexOf(tier)
     );
