@@ -20,7 +20,7 @@ const debugrolls = {
       const tier = randomTier();
       text += '\n' + 
       `${i + 1}) **${tier.name}** Color: ${tier.color}` +
-      `Probability: ${tier.probability}`;
+      ` Probability: ${tier.probability}`;
     }
     await interaction.reply({ content: text });
   }
