@@ -66,7 +66,7 @@ const roll = {
     emb
       .setTitle(`${interaction.user.username} ролит!`)
       .setColor(tier.color)
-      .setThumbnail(interaction.user.avatarURL())
+      .setThumbnail(interaction.user.avatarURL() + '?size=1024')
       .addField('Роль:', `<@&${roleId}>\n\nЭто **${tier.name}** роль.`);
     await interaction.reply({ embeds: [emb], components: [row] });
 
