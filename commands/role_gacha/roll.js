@@ -6,7 +6,7 @@ const guild = require('../../models/guild');
 const randomTier = require('../../utils/randomTier');
 const tiers = require('../../config/tiers.json');
 
-const DAY_IN_MILISECONDS = 86400000;
+const DAY_IN_MILISECONDS = 43200000;
 
 const roll = {
   data: new SlashCommandBuilder()
