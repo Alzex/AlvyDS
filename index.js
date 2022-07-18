@@ -42,8 +42,8 @@ bot.once('ready', async () => {
     const command = require(file);
     bot.commands.set(command.data.name, command);
   }
-  await mongoose.connect(process.env.DB_URL, { keepAlive: true });
+  await mongoose.connect(process.env.ALVY_DB_URL, { keepAlive: true });
   console.log('READY!');
 });
 
-bot.login(process.env.TOKEN);
+bot.login(process.env.ALVY_TOKEN);

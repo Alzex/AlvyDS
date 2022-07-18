@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
 console.log(process.env.TOKEN);
 
 console.log('Deploying commands...');
-const guildIds = process.env.GUILD_ID.split(',');
+const guildIds = process.env.ALVY_GUILD_ID.split(',');
 
 const commands = [];
 const devOnly = [];
@@ -29,7 +29,7 @@ for (const file of commandFiles) {
   }
 }
 
-const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
+const rest = new REST({ version: '9' }).setToken(process.env.ALVY_TOKEN);
 
 console.log('Deploying for guilds...');
 for (const guildId of guildIds) {
@@ -49,7 +49,7 @@ for (const guildId of guildIds) {
 }
 
 console.log('Deploying for GLOBAL...');
-const globalUrl = Routes.applicationCommands(process.env.CLIENT_ID);
+const globalUrl = Routes.applicationCommands(process.env.ALVY_CLIENT_ID);
 
 rest.put(globalUrl, { body: commands })
   .catch((err) =>
